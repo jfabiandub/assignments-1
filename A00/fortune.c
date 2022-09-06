@@ -1,13 +1,13 @@
 /***************************************************
- * Hello.c
- * Author: Aline Normoyle
- * Date: 1/11/2022
- * Print Hello World
+ * Fortune.c
+ * Author: Jenifer Dubon
+ * Date: 9/6/2022
+ * Print Fortune
  */
 
 #include <stdio.h>
 
 int main() {
-  printf("A journey of a thousand miles begins with a single step.\n");
+  printf("Good wishes on everyone.\n");
   return 0;
 }
