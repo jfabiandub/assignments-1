@@ -15,7 +15,7 @@ int main() {
   scanf("%s", buff); 
   
   slow_str = malloc((length * (strlen(buff) + 1)) + strlen(buff) + 1);
-  memset(slow_str,0,(length+1) *(length)+1);
+  //memset(slow_str,0,(length+1) *(length)+1);
 
 
   int c=0;

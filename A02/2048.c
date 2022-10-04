@@ -27,75 +27,74 @@ int main() {
   }
   for (int i = 0; i< 4; i++){     //for loop that goes through each row
       int j;
-      //int sum;
       for (j = 0; j <4; j++){       // and column
         val = matrix[i][j];
-        if(val == matrix[i][j+1]){   // shift to the right and checks the values
+        if(j < 3 && val == matrix[i][j+1]){   // shift to the right and checks the values
           sum = (val + matrix[i][j+1]);
           if(largest < sum){
             largest = sum;
           }
         }
-        if (matrix[i][j+1] == 0){   //condition that checks if the value is a 0
+        if ((j < 3) && (matrix[i][j+1] == 0)){   //condition that checks if the value is a 0
           int temp = j+1;
-          while(matrix[i][temp]==0){
+          while( temp < 3 && matrix[i][temp]==0){
             temp++;
           }
-          if(val == matrix[i][temp] && (val !=0)){
+          if((val !=0) && val == matrix[i][temp]){
             sum= (val + matrix[i][temp]);
             if(largest < sum){
               largest = sum;
             }
           }
         }
-        if(val==matrix[i][j-1]){    // shift to the left and checks the values
+        if(j >= 1 && val==matrix[i][j-1]){    // shift to the left and checks the values
           sum = (val+matrix[i][j-1]);
           if(largest <sum){
             largest = sum;
           }
         }
-        if(matrix[i][j-1] == 0){
+        if((j > 0) && (matrix[i][j-1] == 0)){
           int temp = j-1;
-          while(matrix[i][temp] ==0){
+          while(temp > 0 && matrix[i][temp] ==0){
             temp--;
           }
-          if(val== matrix[i][temp] && (val !=0)){
+          if((val !=0) && val== matrix[i][temp]){
             sum= (val +matrix[i][temp]);
             if(largest< sum){
               largest = sum;
             }
           }
         }
-        if(val == matrix[i+1][j]){        // shift up and checks the values
+        if(i < 3 && val == matrix[i+1][j]){        // shift up and checks the values
           sum = (val + matrix[i+1][j]);
           if(largest < sum){
             largest = sum;
           }
         }
-        if (matrix[i+1][j] == 0){   //condition that checks if the value is a 0
+        if ((i<3) && (matrix[i+1][j] == 0)){   //condition that checks if the value is a 0
           int temp = i+1;
-          while(matrix[temp][j]==0){
+          while(temp < 3 && matrix[temp][j]==0){
             temp++;
           }
-          if(val == matrix[temp][j] && (val !=0)){
+          if( (val !=0) && val == matrix[temp][j] ){
             sum= (val + matrix[temp][i]);
             if(largest < sum){
               largest = sum;
             }
           }
         }
-        if(val == matrix[i-1][j]){      // shift down and checks the values
+        if(i >=1 && val == matrix[i-1][j]){      // shift down and checks the values
           sum = (val + matrix[i-1][j]);
           if(largest < sum){
             largest = sum;
           }
         }
-        if (matrix[-1][j] == 0){   //condition that checks if the value is a 0
+        if ((i>0 )&& (matrix[i -1][j] == 0)){   //condition that checks if the value is a 0
           int temp = i-1;
-          while(matrix[temp][j]==0){
+          while(temp > 0 && matrix[temp][j]==0){
             temp--;
           }
-          if(val == matrix[temp][j] && (val !=0)){
+          if((val !=0) && val == matrix[temp][j]){
              sum = (val + matrix[temp][j]);
             if(largest < sum){
               largest = sum;
