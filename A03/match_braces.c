@@ -13,7 +13,7 @@ struct node{
 void push (struct node* s, int line, int column){
   struct node* newNode;
   newNode = malloc(sizeof(struct node));
-  if (newNode== NULL){
+  if (!newNode){
     printf("Error");
     exit(1);
   }
@@ -26,21 +26,19 @@ void push (struct node* s, int line, int column){
 }
 
 /* checks if the stack is empty */
-int is_empty(struct node* s){
+/*int is_empty(struct node* s){
   return( s == NULL);
 }
-
+*/
 
 /* pop the element form the stack */
 void pop(struct node* s){
-  if(is_empty(s)){
-    printf("Error, there is nothing in the stack");
-  }
-  else{
-    struct node* curr =s;
+    struct node* curr =NULL;
+    if(curr !=NULL){
     //curr = s->next;
-    s = s->next;
+    curr = s->next;
     free(curr);
+    //s= NULL;
   }
 }
 
@@ -74,25 +72,37 @@ int main(int argc, char** argv) {
   int line = 1;
   struct node* top = NULL;
 
-  ch = fgetc(infile);
-  while(ch !=EOF){
+  //ch = fgetc(infile);
+  while((ch = fgetc(infile)) !=EOF){
+    //printf("%c", ch);
     if(ch == '\n'){
       line++;
       col=0;
     }
-    else if(ch == '{'){
+    else {
+      if(ch == '{'){
       push(top,line,col);
       }
-      else if(ch=='}'){
-      pop(top);
-      if(ch != '{' || top == NULL){
-        printf("Unmatched brace on Line %d and Column %d ", line, col);
+      else if(ch== '}'){
+      //pop(top);
+      if(top == NULL){
+        //printf("Found matching braces (%d, %d) -> (%d, %d)\n",top->line, top->column, line, col);
+
+        printf("Unmatched brace on Line %d and Column %d \n", line, col);
       }
-      else {
-        printf("Found matching braces (%d, %d) -> (%d, %d)\n",top->line, top->column, line, col);
+      else if(ch == '}'){
+          //printf("Unmatched brace on Line %d and Column %d \n", line, col);
+
+        printf("Found matching braces: (%d, %d) -> (%d, %d)\n",top->line, top->column, line, col);
+        pop(top);
       }
     }
+    }
     col++;
+  }
+  while(top!= NULL){
+    printf("Unmatched brace on Line %d and Column %d \n", top->line, top->column);
+        pop(top);
   }
 
   clear(top); 
@@ -100,5 +110,5 @@ int main(int argc, char** argv) {
   fclose(infile); //closes the file
   return 0;
 
-
+//CHECK FOR THE LEAKSSS 
 }

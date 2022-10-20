@@ -37,6 +37,9 @@ struct node* insert_sorted( struct node* head, struct restaurant rest){
     if(current->next->rest.star_rat > rest.star_rat){
       current = current->next;
     }
+    else{
+      break;
+    }
   }
   newNode->next = current->next;
   current->next = newNode;
