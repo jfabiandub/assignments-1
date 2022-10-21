@@ -10,7 +10,7 @@ struct node{
 }; 
 
 /* pushes the elements into the stack */
-void push (struct node* s, int line, int column){
+void push (struct node** s, int line, int column){
   struct node* newNode;
   newNode = malloc(sizeof(struct node));
   if (!newNode){
@@ -19,27 +19,22 @@ void push (struct node* s, int line, int column){
   }
   newNode->line = line;
   newNode->column = column;
-  newNode->next = s;
+  newNode->next = *s;
   //newNode- s = top;
-  s = newNode;
+  *s = newNode;
   //top= newNode;
 }
 
-/* checks if the stack is empty */
-/*int is_empty(struct node* s){
-  return( s == NULL);
-}
-*/
-
 /* pop the element form the stack */
-void pop(struct node* s){
-    struct node* curr =NULL;
-    if(curr !=NULL){
+void pop(struct node** s){
+    //struct node* curr = s;
+    //if(*s !=NULL){
+      struct node* newnode = *s;
+      *s = (*s)->next;
     //curr = s->next;
-    curr = s->next;
-    free(curr);
-    //s= NULL;
-  }
+    free(newnode);
+    //*s= NULL;
+  //}
 }
 
 /*  clears the stack */
@@ -59,7 +54,7 @@ int main(int argc, char** argv) {
     printf("usage: %s \n", argv[0]);
     exit(0);
   }
-  FILE* infile;   //I dont think the infiles are being read :(
+  FILE* infile;   
   infile = fopen(argv[1], "r");
   if(infile == NULL){
     printf("Cannot open file: %s\n", argv[1]);
@@ -72,7 +67,6 @@ int main(int argc, char** argv) {
   int line = 1;
   struct node* top = NULL;
 
-  //ch = fgetc(infile);
   while((ch = fgetc(infile)) !=EOF){
     //printf("%c", ch);
     if(ch == '\n'){
@@ -81,20 +75,15 @@ int main(int argc, char** argv) {
     }
     else {
       if(ch == '{'){
-      push(top,line,col);
+      push(&top,line,col);
       }
       else if(ch== '}'){
-      //pop(top);
       if(top == NULL){
-        //printf("Found matching braces (%d, %d) -> (%d, %d)\n",top->line, top->column, line, col);
-
         printf("Unmatched brace on Line %d and Column %d \n", line, col);
       }
       else if(ch == '}'){
-          //printf("Unmatched brace on Line %d and Column %d \n", line, col);
-
         printf("Found matching braces: (%d, %d) -> (%d, %d)\n",top->line, top->column, line, col);
-        pop(top);
+        pop(&top);
       }
     }
     }
@@ -102,13 +91,14 @@ int main(int argc, char** argv) {
   }
   while(top!= NULL){
     printf("Unmatched brace on Line %d and Column %d \n", top->line, top->column);
-        pop(top);
+        pop(&top);
   }
 
   clear(top); 
-  //free(top);
+  free(top);
   fclose(infile); //closes the file
   return 0;
+
 
 //CHECK FOR THE LEAKSSS 
 }
