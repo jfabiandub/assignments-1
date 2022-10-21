@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
   for (int r = 0; r < h; r++) {
     for (int c = 0; c < w; c++) {
        struct ppm_pixel p = pixels[r*w+c]; 
-       printf("(%u,%u,%u) ", p.red, p.green, p.blue); 
+       printf("(%u,%u,%u) ", p.red, p.blue, p.green); 
     }
     printf("\n");
   }
