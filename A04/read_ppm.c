@@ -42,20 +42,7 @@ struct ppm_pixel* read_ppm(const char* filename, int* w, int* h) {
     return NULL;
   }
 
-  //while(fgetc(fp) != '\n'){}
-  /*for( int i = 0; 1< *h; i++){
-    for(int j=0; 1< *w; j++){
-        //array->red = fgetc(fp);
-        //array->green = fgetc(fp);
-        //array->blue = fgetc(fp);
-        fscanf(fp, " %hhu %hhu %hhu",
-         &array[i*(*h) + j].red,
-         &array[i*(*h) + j].green,
-         &array[i*(*h) + j].blue);
-        
-    }
-  }
-  */
+
  fgets(image, 100, fp);
  fread(array, sizeof(struct ppm_pixel), (*w)*(*h), fp);
   
