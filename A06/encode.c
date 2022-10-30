@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
       least_bit= ~least_bit;
       image[i]&= least_bit;
     }
-    printf("0x%x\n", image[i]);
+    
   } 
 
   char* new_fp = malloc(strlen(fp)+8); //this should save the new file with the new name

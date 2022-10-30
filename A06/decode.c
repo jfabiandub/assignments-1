@@ -33,13 +33,12 @@ int* array = malloc(sizeof(int)* count);
        count++;
        array[count]= color.blue%2;
        count++;
-
     }
   }
  
   count = (w*h*3)/8;
   printf("Max number of characters in the image: %d\n", count);
-  int* secret_message =  malloc(sizeof(char)* count); 
+  int* secret_message =  malloc(sizeof(int)* count); 
   int d=0;
   
   for(int i=0; i<h*w*3; i+=8){ 
@@ -61,7 +60,7 @@ int* array = malloc(sizeof(int)* count);
       d++;
     }
   }
- 
+
   printf("\n");
   free(image);
   free(array);
