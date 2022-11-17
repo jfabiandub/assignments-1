@@ -17,6 +17,42 @@ struct chunk {
 };
 
 void memstats(struct chunk* freelist, void* buffer[], int len) {
+  //total # of memory blocks allocated by malloc
+  int totalBlocks=0;
+  int usedBlock=0;
+  int freeBlock=0;
+  struct chunk *freelist1= freelist;
+
+  int totalMemory=0;   //count all runing size
+  int freeMemory= 0;
+  int usedMemory=0;
+  int unused= 0;
+
+  while(freelist1!=NULL){
+  freeBlock++; 
+  freeMemory = freeMemory + freelist1->size;
+  freelist1 = freelist1->next;
+  //freeMemory = freeMemory + freelist1->size;
+  }
+
+  for (int i=0; i<len; i++){
+    if( buffer[i]!=NULL){
+    usedBlock++; //checks through the array with len 
+  struct chunk *cnk= (struct chunk *)((struct chunk *) buffer[i] -1);
+  usedMemory= usedMemory + cnk->size;
+
+  unused = (cnk->size - cnk->used) + unused;
+  
+    }
+  }
+  totalMemory = usedMemory + freeMemory;
+  float underutilized = (float)unused/ totalMemory;
+  totalBlocks = freeBlock + usedBlock;
+  //totalMemory = usedMemory + freeMemory;
+
+printf("Total blocks: %d  Free blocks: %d Used blocks: %d\t Total memory allocated: %d  Free memory: %d   Used memory: %d   Underutilized memory: %2f ", 
+totalBlocks, freeBlock, usedBlock, totalMemory, freeMemory, usedMemory, underutilized );
+
 }
 
 int main ( int argc, char* argv[]) {
