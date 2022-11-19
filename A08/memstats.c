@@ -46,11 +46,11 @@ void memstats(struct chunk* freelist, void* buffer[], int len) {
     }
   }
   totalMemory = usedMemory + freeMemory;
-  float underutilized = (float)unused/ totalMemory;
+  float underutilized = (float)unused/ usedMemory;
   totalBlocks = freeBlock + usedBlock;
   //totalMemory = usedMemory + freeMemory;
 
-printf("Total blocks: %d  Free blocks: %d Used blocks: %d\t Total memory allocated: %d  Free memory: %d   Used memory: %d   Underutilized memory: %2f ", 
+printf("Total blocks: %d  Free blocks: %d Used blocks: %d\nTotal memory allocated: %d  Free memory: %d   Used memory: %d\nUnderutilized memory: %.2f ", 
 totalBlocks, freeBlock, usedBlock, totalMemory, freeMemory, usedMemory, underutilized );
 
 }

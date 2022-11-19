@@ -33,7 +33,6 @@ void *malloc (size_t size) {
     else{
       prev = next;
       next = next->next;
-
     }
   }
   
