@@ -9,7 +9,6 @@ int main(int argc, char** argv) {
     printf("usage: glitch <file.ppm>\n");
     return 0;
   }
-  
   /* holds the width and height */
   int w;
   int h;
@@ -29,8 +28,8 @@ int main(int argc, char** argv) {
     for (int j= 0; j<w; j++){
       struct ppm_pixel p = pixels[i*w +j];
       p.red= p.red << (rand() % 2);
-      p.green = p.blue << (rand() % 2);
-      p.blue = p.green<< (rand() % 2);
+      p.green = p.green << (rand() % 2);
+      p.blue = p.blue<< (rand() % 2);
       pixels[i*w +j]=p;
     }
   }
@@ -47,7 +46,6 @@ char* new_fp = malloc(strlen(filename)+8); //this should save the new file with 
   write_ppm(new_fp, pixels,w, h);
   
   free(pixels);
-
   free(new_fp);
 
   return 0;

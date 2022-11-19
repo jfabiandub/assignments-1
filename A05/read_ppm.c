@@ -14,7 +14,6 @@ struct ppm_pixel* read_ppm(const char* filename, int* w, int* h) {
     //exit (1);
     return NULL;
   }
-
   char image[100];
   char c[2];
 
@@ -24,7 +23,6 @@ struct ppm_pixel* read_ppm(const char* filename, int* w, int* h) {
     printf("error");
     return NULL;
   }
-  
   fgets(image, 100, fp);
   while(image[0] == '#' ){
   fgets(image, 100, fp);
@@ -35,17 +33,14 @@ struct ppm_pixel* read_ppm(const char* filename, int* w, int* h) {
   //fgets(image, 100, fp);
   sscanf(image, "%d %d", w, h);
   struct ppm_pixel* array = malloc(sizeof(struct ppm_pixel)* (*w)*(*h));
-
   if(!array){
     printf("unable to allocate memmory\n");
     return NULL;
   }
 
-
  fgets(image, 100, fp);
  fread(array, sizeof(struct ppm_pixel), (*w)*(*h), fp);
 
-  
   fclose(fp);
   //free(fp);
   return array;

@@ -21,8 +21,8 @@ FILE *fp;
     for(int i = 0; i < h; i++){
         for(int j = 0; j < w; j++){
             fwrite(&pixels[i*w + j].red, 1, 1, fp);
-            fwrite(&pixels[i*w + j].blue, 1, 1, fp);
             fwrite(&pixels[i*w + j].green, 1, 1, fp);
+            fwrite(&pixels[i*w + j].blue, 1, 1, fp);
         }
     }
     fclose(fp);
