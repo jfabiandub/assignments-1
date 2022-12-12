@@ -13,11 +13,11 @@ the amount of time it takes to compute each image.
 [cols="1,1"]
 !===
 | Size | Time (s) 
-| 100 | todo
-| 400 | todo
-| 800 | todo
-| 1000 | todo
-| 2000 | todo
+| 100 | 0.026049
+| 400 | 0.286076
+| 800 | 1.082461
+| 1000 | 1.627462
+| 2000 | 6.386257
 !===
 
 = Multi-process mandelbrot
@@ -28,9 +28,9 @@ the amount of time it takes to compute each image.
 [cols="1,1"]
 !===
 | Size | Time (s) 
-| 100 | todo
-| 400 | todo
-| 800 | todo
-| 1000 | todo
-| 2000 | todo
+| 100 | 0.228885
+| 400 | 0.237370
+| 800 | 0.253541
+| 1000 | 0.106222
+| 2000 | 0.007239
 !===
